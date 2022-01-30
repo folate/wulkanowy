@@ -30,16 +30,7 @@ import io.github.wulkanowy.databinding.ActivityMainBinding
 import io.github.wulkanowy.ui.base.BaseActivity
 import io.github.wulkanowy.ui.modules.Destination
 import io.github.wulkanowy.ui.modules.account.accountquick.AccountQuickDialog
-import io.github.wulkanowy.utils.AnalyticsHelper
-import io.github.wulkanowy.utils.AppInfo
-import io.github.wulkanowy.utils.InAppReviewHelper
-import io.github.wulkanowy.utils.UpdateHelper
-import io.github.wulkanowy.utils.createNameInitialsDrawable
-import io.github.wulkanowy.utils.dpToPx
-import io.github.wulkanowy.utils.getThemeAttrColor
-import io.github.wulkanowy.utils.nickOrName
-import io.github.wulkanowy.utils.safelyPopFragments
-import io.github.wulkanowy.utils.setOnViewChangeListener
+import io.github.wulkanowy.utils.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -209,8 +200,10 @@ class MainActivity : BaseActivity<MainPresenter, ActivityMainBinding>(), MainVie
         caller: PreferenceFragmentCompat,
         pref: Preference
     ): Boolean {
-        val fragment =
-            supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment)
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(
+            classLoader,
+            pref.fragment.toString()
+        )
         pushView(fragment)
         return true
     }
